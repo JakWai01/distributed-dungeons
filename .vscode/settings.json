@@ -6,9 +6,9 @@
             "port": 5432,
             "driver": "PostgreSQL",
             "name": "distributed_dungeons",
-            "database": "distributed_dungeons",
+            "database": "stripe-example",
             "username": "postgres",
-            "password": "mysecretpassword"
+            "password": "postgres"
         }
     ]
 }
