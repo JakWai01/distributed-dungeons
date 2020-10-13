@@ -33,3 +33,23 @@ func main() {
 
 	fmt.Println("Successfully connected!")
 }
+
+// func addSessionKey(db *sql.DB) {
+// 	insertStatement := `
+// 	INSERT INTO sessionkeys (sessionkey, sessionpassword) VALUES
+// 	(26,'rommel@500rockets.io','rommel','galisanao')`
+// 	_, err = db.Exec(insertStatement)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// }
+
+// func addCharacter(db *sql.DB) {
+// 	insertStatement := `
+// 	INSERT INTO personnel (p_age, p_email, p_firstname, p_lastname) VALUES
+// 	(26,'rommel@500rockets.io','rommel','galisanao')`
+// 	_, err = db.Exec(insertStatement)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// }
