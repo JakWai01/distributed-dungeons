@@ -152,3 +152,11 @@ func updateDiceroll(db *sql.DB) {
 		panic(err)
 	}
 }
+
+func removeSession(db *sql.DB) {
+
+}
+
+func removeCharacter(db *sql.DB) {
+
+}
