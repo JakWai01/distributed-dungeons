@@ -1,4 +1,4 @@
-package database
+package main
 
 import (
 	"database/sql"
@@ -120,9 +120,4 @@ func queryCharactersData(db *sql.DB) {
 	}
 	// return array with all values
 	fmt.Printf("%v : %v : %v : %v : %v\n", myCharacters.sessionkey, myCharacters.name, myCharacters.player, myCharacters.occupation, myCharacters.age)
-}
-
-// Open opens database
-func Open() {
-	fmt.Println("OK DATA")
 }

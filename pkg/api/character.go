@@ -1,4 +1,4 @@
-package api
+package main
 
 import (
 	"encoding/json"
@@ -40,7 +40,6 @@ func handleRequests() {
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
 
-// Open opens api
-func Open() {
-	fmt.Println("OK API")
+func main() {
+	handleRequests()
 }
