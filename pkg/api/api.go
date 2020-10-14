@@ -39,3 +39,8 @@ func handleRequests() {
 	http.HandleFunc("/allArticles", allArticles)
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
+
+// Open opens api
+func Open() {
+	fmt.Println("OK API")
+}

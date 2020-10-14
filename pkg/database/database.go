@@ -105,6 +105,7 @@ func querySessionData(db *sql.DB) {
 		panic(err)
 	}
 
+	// return array with all values
 	fmt.Printf("%v : %v\n", mySession.key, mySession.password)
 }
 
@@ -117,6 +118,11 @@ func queryCharactersData(db *sql.DB) {
 	if err != nil {
 		panic(err)
 	}
-
+	// return array with all values
 	fmt.Printf("%v : %v : %v : %v : %v\n", myCharacters.sessionkey, myCharacters.name, myCharacters.player, myCharacters.occupation, myCharacters.age)
+}
+
+// Open opens database
+func Open() {
+	fmt.Println("OK DATA")
 }
