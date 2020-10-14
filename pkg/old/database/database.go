@@ -1,8 +1,7 @@
-package main
+package database
 
 import (
 	"database/sql"
-	"fmt"
 
 	_ "github.com/lib/pq"
 )
@@ -46,29 +45,29 @@ type Characters struct {
 	sessionkey  int
 }
 
-func main() {
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
-		"password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname)
-	db, err := sql.Open("postgres", psqlInfo)
-	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
+// func main() {
+// 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
+// 		"password=%s dbname=%s sslmode=disable",
+// 		host, port, user, password, dbname)
+// 	db, err := sql.Open("postgres", psqlInfo)
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	defer db.Close()
 
-	err = db.Ping()
-	if err != nil {
-		panic(err)
-	}
+// 	err = db.Ping()
+// 	if err != nil {
+// 		panic(err)
+// 	}
 
-	fmt.Println("Successfully connected!")
+// 	fmt.Println("Successfully connected!")
 
-	addSessionKey(db)
-	addCharacter(db)
-	querySessionData(db)
-	queryCharactersData(db)
+// 	addSessionKey(db)
+// 	addCharacter(db)
+// 	querySessionData(db)
+// 	queryCharactersData(db)
 
-}
+// }
 
 // call this function from frontend
 // addSessionKey adds key and password to database
@@ -122,7 +121,7 @@ func querySessionData(db *sql.DB) (int, string) {
 	return mySession.key, mySession.password
 }
 
-func queryCharactersData(db *sql.DB) (string, string, string, int, string, string, string, int, int, int, int, int, int, int, int, int, int, int, int, int, int) {
+func QueryCharactersData(db *sql.DB) (string, string, string, int, string, string, string, int, int, int, int, int, int, int, int, int, int, int, int, int, int) {
 	var myCharacters Characters
 	// make WHERE condition to sessionkey with one to many relation
 	userSQL := "SELECT name, player, occupation, age, sex, residence, birthplace, str, dex, pow, con, app, edu, siz, inte, hitpoints, sanity, luck, magicpoints, diceroll, sessionkey FROM character WHERE name='Oliver Smith'"

@@ -41,7 +41,7 @@ func Chars(w http.ResponseWriter, r *http.Request) {
 
 	// For all characters with the same sessionkey, make a charakter in characters
 	articles := Characters{
-		Character{name: "Test Title", player: "Test Desc", occupation: "Test Content"},
+		Character{name: Character.name, Character.player},
 	}
 
 	fmt.Println("Endpoint Hit: All Articles Endpoint")
@@ -62,7 +62,9 @@ func handleRequests() {
 
 // NewAPI initializes API values
 func NewAPI(name string, player string, occupation string, age int, sex string, residence string, birthplace string, str int, dex int, pow int, con int, app int, edu int, siz int, inte int, hitpoints int, sanity int, luck int, magicpoints int, diceroll int, sessionkey int) {
-	fmt.Println(Character{name, player, occupation, age, sex, residence, birthplace, str, dex, pow, con, app, edu, siz, inte, hitpoints, sanity, luck, magicpoints, diceroll, sessionkey})
+	articles := Characters{
+		Character{name, player, occupation, age, sex, residence, birthplace, str, dex, pow, con, app, edu, siz, inte, hitpoints, sanity, luck, magicpoints, diceroll, sessionkey},
+	}
 
 	handleRequests()
 }
