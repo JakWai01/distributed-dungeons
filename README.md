@@ -32,7 +32,7 @@ At this point, the database and tables should be initialized. This can be done u
 ```
 CREATE DATABASE distributed_dungeons;
 CREATE TABLE session (
-  sessionkey VARCHAR(255),
+  key SERIAL PRIMARY KEY,
   password VARCHAR(255)
   );
 CREATE TABLE characters ( 
@@ -56,6 +56,8 @@ CREATE TABLE characters (
   luck INT,
   magicpoints INT,
   diceroll INT
+  sessionkey INT,
+  FOREIGN KEY (sessionkey) REFERENCES session (key));
   );
 ```
 
@@ -69,3 +71,7 @@ To delete the persistent data you have to remove the docker volume:
 
 ```docker volume prune```
   
+ ## database relations
+ 
+ In the distributed_dungeons database there is a one-to-many relation from a key of the "session" table to n rows of the "character" table.
+ 
