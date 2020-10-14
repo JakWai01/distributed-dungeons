@@ -1,26 +1,27 @@
-package apk
+package api
 
 import (
 	"encoding/json"
 	"fmt"
+
 	"log"
 	"net/http"
 )
 
-// Article defines article
-type Article struct {
+// Character defines article
+type Character struct {
 	Title   string `json:"Title"`
 	Desc    string `json:"desc"`
 	Content string `json:"content"`
 }
 
-// Articles defines array of Article
-type Articles []Article
+// Characters defines array of Article
+type Characters []Character
 
 // Define content here and get Information by frontend
 func allArticles(w http.ResponseWriter, r *http.Request) {
-	articles := Articles{
-		Article{Title: "Test Title", Desc: "Test Desc", Content: "Test Content"},
+	articles := Characters{
+		Character{Title: "Test Title", Desc: "Test Desc", Content: "Test Content"},
 	}
 
 	fmt.Println("Endpoint Hit: All Articles Endpoint")
@@ -35,6 +36,6 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 // Change api key here on request of a new session
 func handleRequests() {
 	http.HandleFunc("/", homePage)
-	http.HandleFunc("/$APIKEYHERE", allArticles)
+	http.HandleFunc("/allArticles", allArticles)
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
