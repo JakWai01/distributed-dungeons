@@ -77,6 +77,7 @@ func addSessionKey(db *sql.DB) {
 	if err != nil {
 		panic(err)
 	}
+	// If this function gets called, update API (query Data again)
 }
 
 func addCharacter(db *sql.DB) {
@@ -86,6 +87,7 @@ func addCharacter(db *sql.DB) {
 	if err != nil {
 		panic(err)
 	}
+	// If this function gets called, update API (query Data again)
 }
 
 func updateDiceroll(db *sql.DB) {
@@ -94,6 +96,7 @@ func updateDiceroll(db *sql.DB) {
 	if err != nil {
 		panic(err)
 	}
+	// If this function gets called, update API (query Data again)
 }
 
 func querySessionData(db *sql.DB) {
@@ -105,7 +108,7 @@ func querySessionData(db *sql.DB) {
 		panic(err)
 	}
 
-	// return array with all values
+	// call API setup function with array of all data
 	fmt.Printf("%v : %v\n", mySession.key, mySession.password)
 }
 
@@ -118,6 +121,6 @@ func queryCharactersData(db *sql.DB) {
 	if err != nil {
 		panic(err)
 	}
-	// return array with all values
+	// call API setup function with array of all data
 	fmt.Printf("%v : %v : %v : %v : %v\n", myCharacters.sessionkey, myCharacters.name, myCharacters.player, myCharacters.occupation, myCharacters.age)
 }
