@@ -65,4 +65,7 @@ A value in a table can be updated like this:
 
 ```UPDATE characters SET diceroll=1 WHERE name='Oliver Smith';```
   
+To delete the persistent data you have to remove the docker volume: 
+
+```docker volume prune```
   
