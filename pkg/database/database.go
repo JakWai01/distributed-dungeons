@@ -70,6 +70,8 @@ func main() {
 
 }
 
+// call this function from frontend
+// addSessionKey adds key and password to database
 func addSessionKey(db *sql.DB) {
 	insertStatement := `
 	INSERT INTO session (password) VALUES ('password123')`
@@ -77,9 +79,12 @@ func addSessionKey(db *sql.DB) {
 	if err != nil {
 		panic(err)
 	}
+	//API(querySessionData())
 	// If this function gets called, update API (query Data again)
 }
 
+// call this function from frontend
+// addCharacter adds parameters of a character and diceroll to database
 func addCharacter(db *sql.DB) {
 	insertStatement := `
 	INSERT INTO character (name, player, occupation, age, sex, residence, birthplace, str, dex, pow, con, app, edu, siz, inte, hitpoints, sanity, luck, magicpoints, diceroll, sessionkey) VALUES ('Oliver Smith','Jakob','Doctor',36,'Male','London', 'London', 50, 60, 40, 30, 50, 50, 7, 60, 3, 15, 13, 12, 100, 1)`
@@ -87,19 +92,25 @@ func addCharacter(db *sql.DB) {
 	if err != nil {
 		panic(err)
 	}
+	//API(queryCharacterData())
 	// If this function gets called, update API (query Data again)
 }
 
+// call this function from frontend
+// updateDiceroll updates diceroll in database
 func updateDiceroll(db *sql.DB) {
 	insertStatement := `UPDATE characters SET dice_roll= 1 WHERE name='Oliver Smith';`
 	_, err := db.Exec(insertStatement)
 	if err != nil {
 		panic(err)
 	}
+	//API(queryCharacterData())
 	// If this function gets called, update API (query Data again)
 }
 
-func querySessionData(db *sql.DB) {
+// pass Database changes to API
+
+func querySessionData(db *sql.DB) (int, string) {
 	var mySession Session
 	userSQL := "SELECT key, password FROM session WHERE key = 1"
 
@@ -108,11 +119,10 @@ func querySessionData(db *sql.DB) {
 		panic(err)
 	}
 
-	// call API setup function with array of all data
-	fmt.Printf("%v : %v\n", mySession.key, mySession.password)
+	return mySession.key, mySession.password
 }
 
-func queryCharactersData(db *sql.DB) {
+func queryCharactersData(db *sql.DB) (string, string, string, int, string, string, string, int, int, int, int, int, int, int, int, int, int, int, int, int, int) {
 	var myCharacters Characters
 	// make WHERE condition to sessionkey with one to many relation
 	userSQL := "SELECT name, player, occupation, age, sex, residence, birthplace, str, dex, pow, con, app, edu, siz, inte, hitpoints, sanity, luck, magicpoints, diceroll, sessionkey FROM character WHERE name='Oliver Smith'"
@@ -122,5 +132,6 @@ func queryCharactersData(db *sql.DB) {
 		panic(err)
 	}
 	// call API setup function with array of all data
-	fmt.Printf("%v : %v : %v : %v : %v\n", myCharacters.sessionkey, myCharacters.name, myCharacters.player, myCharacters.occupation, myCharacters.age)
+	return myCharacters.name, myCharacters.player, myCharacters.occupation, myCharacters.age, myCharacters.sex, myCharacters.residence, myCharacters.birthplace, myCharacters.str, myCharacters.dex, myCharacters.pow, myCharacters.con, myCharacters.app, myCharacters.edu, myCharacters.siz, myCharacters.inte, myCharacters.hitpoints, myCharacters.sanity, myCharacters.luck, myCharacters.magicpoints, myCharacters.diceroll, myCharacters.sessionkey
+
 }

@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+// CALL QUERYDATA HERE AND MAKE IT TO API
 // Character defines article
 type Character struct {
 	Title   string `json:"Title"`
@@ -35,5 +36,6 @@ func handleRequests() {
 }
 
 func main() {
+
 	handleRequests()
 }
