@@ -22,4 +22,5 @@ type Character struct {
 	Luck         int
 	MagicPoints  int
 	Diceroll     int
+	SessionID    int
 }

@@ -2,6 +2,10 @@
 drop table if exists characters;
 drop table if exists sessions;
 -- Create new tables
+create table sessions (
+    id serial primary key,
+    password text not null
+);
 create table characters (
     id serial not null,
     name text not null,
@@ -24,13 +28,12 @@ create table characters (
     luck integer not null,
     magic_points integer not null,
     diceroll integer not null,
-    session_id integer
-);
-create table sessions (
-    id integer not null primary key,
-    password text not null
+    session_id integer not null,
+    foreign key (session_id) references sessions(id)
 );
 -- Create test data
+insert into sessions (password)
+values ('password123');
 insert into characters (
         name,
         player,
@@ -75,5 +78,51 @@ values (
         1,
         1,
         1,
-        null
+        1
+    );
+insert into characters (
+        name,
+        player,
+        occupation,
+        age,
+        sex,
+        residence,
+        birthplace,
+        strength,
+        dexterity,
+        power,
+        constitution,
+        appearance,
+        education,
+        size,
+        intelligence,
+        hitpoints,
+        sanity,
+        luck,
+        magic_points,
+        diceroll,
+        session_id
+    )
+values (
+        'testname 2',
+        'testplayer',
+        'testoccupation',
+        1,
+        'female',
+        'testresidence',
+        'stuttgart',
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
     );

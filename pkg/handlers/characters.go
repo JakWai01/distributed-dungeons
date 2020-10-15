@@ -8,11 +8,12 @@ import (
 	"github.com/JakWai01/distributed-dungeons/pkg/models"
 )
 
+// GetAllCharactersHandler provides API Data
 func GetAllCharactersHandler(db *sql.DB) http.HandlerFunc {
 	fn := func(rw http.ResponseWriter, r *http.Request) {
 		dbCharacters := []models.Character{}
 
-		rows, err := db.Query("select id, name,	player, occupation,	age, sex, residence, birthplace, strength, dexterity, power, constitution, appearance, education, size, intelligence, hitpoints, sanity, luck, magic_points, diceroll from characters")
+		rows, err := db.Query("select id, name,	player, occupation,	age, sex, residence, birthplace, strength, dexterity, power, constitution, appearance, education, size, intelligence, hitpoints, sanity, luck, magic_points, diceroll, session_id from characters")
 		if err != nil {
 			http.Error(rw, err.Error(), 500)
 
@@ -44,6 +45,7 @@ func GetAllCharactersHandler(db *sql.DB) http.HandlerFunc {
 				&dbCharacter.Luck,
 				&dbCharacter.MagicPoints,
 				&dbCharacter.Diceroll,
+				&dbCharacter.SessionID,
 			); err != nil {
 				http.Error(rw, err.Error(), 500)
 
