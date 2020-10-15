@@ -24,7 +24,7 @@ You can access your container ID with ```docker ps```
 
 At last, execute: 
 
-```psql -U $DBNAME```
+```psql -U postgres```
 
 You can access your exisiting databases with ```\l``` 
  
