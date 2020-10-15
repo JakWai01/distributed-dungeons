@@ -1,5 +1,7 @@
 # Distributed Dungeons
 
+## Note: I have stopped working on this project for now. I will most definitely continue working on it soon.
+
 ## About
 
 The idea behind Distributed Dungeons was to make online pen & paper sessions easier to manage. Distributed Dungeons is open source web application. Players can connect to the session via a sessionkey and password they got from the DM or whoever started the session. Said session allows the DM to see the stats of their players in realtime and even their dicerolls (they have to roll the dice in the webapp though :D). 
