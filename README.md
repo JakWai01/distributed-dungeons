@@ -31,34 +31,35 @@ You can access your exisiting databases with ```\l```
 At this point, the database and tables should be initialized. This can be done using basic SQL.
 ```
 CREATE DATABASE distributed_dungeons;
-CREATE TABLE session (
-  key SERIAL PRIMARY KEY,
-  password VARCHAR(255)
-  );
-CREATE TABLE characters ( 
-  name VARCHAR(255),
-  player VARCHAR(255),
-  occupation VARCHAR(255),
-  age INT,
-  sex VARCHAR(255),
-  residence VARCHAR(255),
-  birthplace VARCHAR(255),
-  str INT,
-  dex INT,
-  pow INT,
-  con INT,
-  app INT,
-  edu INT,
-  siz INT,
-  int INT,
-  hitpoints INT,
-  sanity INT,
-  luck INT,
-  magicpoints INT,
-  diceroll INT
-  sessionkey INT,
-  FOREIGN KEY (sessionkey) REFERENCES session (key));
-  );
+CREATE TABLE sessions (
+    id serial primary key,
+    password text not null
+);
+CREATE TABLE characters (
+    id serial not null,
+    name text not null,
+    player text not null,
+    occupation text not null,
+    age integer not null,
+    sex text not null,
+    residence text not null,
+    birthplace text not null,
+    strength integer not null,
+    dexterity integer not null,
+    power integer not null,
+    constitution integer not null,
+    appearance integer not null,
+    education integer not null,
+    size integer not null,
+    intelligence integer not null,
+    hitpoints integer not null,
+    sanity integer not null,
+    luck integer not null,
+    magic_points integer not null,
+    diceroll integer not null,
+    session_id integer not null,
+    foreign key (session_id) references sessions(id)
+);
 ```
 
 Note: The character table is currently designed for the "Call of Cthulu" game.
@@ -75,3 +76,91 @@ To delete the persistent data you have to remove the docker volume:
  
  In the distributed_dungeons database there is a one-to-many relation from a key of the "session" table to n rows of the "character" table.
  
+ ## Sql File
+ 
+ The sql file looks like this: 
+ 
+ ```
+ -- Drop old tables
+drop table if exists characters;
+drop table if exists sessions;
+-- Create new tables
+create table sessions (
+    id serial primary key,
+    password text not null
+);
+create table characters (
+    id serial not null,
+    name text not null,
+    player text not null,
+    occupation text not null,
+    age integer not null,
+    sex text not null,
+    residence text not null,
+    birthplace text not null,
+    strength integer not null,
+    dexterity integer not null,
+    power integer not null,
+    constitution integer not null,
+    appearance integer not null,
+    education integer not null,
+    size integer not null,
+    intelligence integer not null,
+    hitpoints integer not null,
+    sanity integer not null,
+    luck integer not null,
+    magic_points integer not null,
+    diceroll integer not null,
+    session_id integer not null,
+    foreign key (session_id) references sessions(id)
+);
+-- Create test data
+insert into sessions (password)
+values ('password123');
+insert into characters (
+        name,
+        player,
+        occupation,
+        age,
+        sex,
+        residence,
+        birthplace,
+        strength,
+        dexterity,
+        power,
+        constitution,
+        appearance,
+        education,
+        size,
+        intelligence,
+        hitpoints,
+        sanity,
+        luck,
+        magic_points,
+        diceroll,
+        session_id
+    )
+values (
+        'testname',
+        'testplayer',
+        'testoccupation',
+        1,
+        'female',
+        'testresidence',
+        'stuttgart',
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+    );
+    ```
